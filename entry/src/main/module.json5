@@ -1,0 +1,68 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+      }
+    ],
+    // 请求权限
+    "requestPermissions": [
+      {
+        // 权限名称
+        "name": "ohos.permission.PUBLISH_AGENT_REMINDER",
+        // 权限请求原因
+        "reason": "$string:reminder_reason",
+        // 描述权限使用的场景
+        "usedScene": {
+          // 指定使用该权限的 Ability 组件名称，是一个字符串数组
+          "abilities": [
+            "EntryAbility"
+          ],
+          // 指定权限使用时机，可选值为 inuse（仅应用在前台使用时）或 always（应用在前台和后台都可能需要）
+          "when": "always"
+        }
+      }
+    ]
+  }
+}
